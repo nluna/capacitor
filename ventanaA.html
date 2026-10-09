@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ventana A (origen / tiene el token)</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #eef7ee; }
+    button { margin: 5px; padding: 8px 12px; }
+    #log { background: #fff; padding: 10px; margin-top: 15px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+
+  <h2>Ventana A (origen)</h2>
+  <p>Esta ventana tiene el token guardado.</p>
+
+  <button onclick="window.open('ventanaB.html', 'ventanaB')">
+    Abrir Ventana B
+  </button>
+
+  <button onclick="mostrarEstado()">Ver token actual</button>
+
+  <div id="log">Cargando...</div>
+
+  <script>
+    // Simulamos que esta ventana ya tiene un token guardado (sessionStorage)
+    if (!sessionStorage.getItem('token')) {
+      sessionStorage.setItem('token', 'TOKEN_ABC123');
+    }
+
+    function mostrarEstado() {
+      const token = sessionStorage.getItem('token') || '(vacío)';
+      document.getElementById('log').textContent = 'sessionStorage.token = ' + token;
+    }
+
+    mostrarEstado();
+  </script>
+
+</body>
+</html>
